@@ -38,46 +38,44 @@ interface CreateTableFormData {
   location: string;
 }
 
-const StyledCard = styled(Card)<{ isactive: boolean }>(({ theme, isactive }) => ({
-  background: '#1e1e1e',
-  color: 'white',
-  textDecoration: 'none',
-  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-  border: isactive ? '2px solid #4caf50' : '2px solid #f44336',
-  boxShadow: isactive
-    ? '0 0 12px 2px rgba(76, 175, 80, 0.3), 0 8px 24px rgba(0,0,0,0.4)'
-    : '0 0 12px 2px rgba(244, 67, 54, 0.25), 0 8px 24px rgba(0,0,0,0.4)',
+const StyledCard = styled(Card)<{ isActive: boolean }>(({ theme, isActive }) => ({
   position: 'relative',
-  overflow: 'hidden',
-  cursor: 'pointer',
+  transition: 'all 0.3s ease',
   '&:hover': {
-    transform: 'translateY(-8px) scale(1.03)',
-    boxShadow: isactive
-      ? '0 0 24px 4px rgba(76, 175, 80, 0.5), 0 12px 32px rgba(0,0,0,0.5)'
-      : '0 0 24px 4px rgba(244, 67, 54, 0.4), 0 12px 32px rgba(0,0,0,0.5)',
-    border: isactive ? '2.5px solid #43e96b' : '2.5px solid #ff1744',
-    '& .action-buttons': {
-      opacity: 1,
-      transform: 'translateY(0)'
-    }
+    transform: 'translateY(-5px)',
   },
-  '&::before': {
+  border: isActive ? '2px solid #4caf50' : '2px solid #f44336',
+  boxShadow: isActive
+    ? '0 4px 20px 0 rgba(0,0,0,0.14), 0 7px 10px -5px rgba(76,175,80,0.4)'
+    : '0 4px 20px 0 rgba(0,0,0,0.14), 0 7px 10px -5px rgba(244,67,54,0.4)',
+  '&:hover': {
+    boxShadow: isActive
+      ? '0 8px 30px 0 rgba(0,0,0,0.2), 0 10px 15px -5px rgba(76,175,80,0.5)'
+      : '0 8px 30px 0 rgba(0,0,0,0.2), 0 10px 15px -5px rgba(244,67,54,0.5)',
+    transform: 'translateY(-8px)',
+  },
+  '&::after': {
     content: '""',
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    height: '4px',
-    background: isactive
-      ? 'linear-gradient(90deg, #43e96b, #4caf50)'
-      : 'linear-gradient(90deg, #ff1744, #f44336)',
-    transform: 'scaleX(0)',
-    transformOrigin: 'left',
-    transition: 'transform 0.3s ease'
+    bottom: 0,
+    border: isActive ? '2.5px solid #43e96b' : '2.5px solid #ff1744',
+    borderRadius: 'inherit',
+    pointerEvents: 'none',
+    opacity: 0,
+    transition: 'opacity 0.3s ease',
   },
-  '&:hover::before': {
-    transform: 'scaleX(1)'
-  }
+  '&:hover::after': {
+    opacity: 1,
+  },
+  '& .MuiCardContent-root': {
+    background: isActive
+      ? 'linear-gradient(45deg, #1a237e 30%, #0d47a1 90%)'
+      : 'linear-gradient(45deg, #b71c1c 30%, #c62828 90%)',
+    color: 'white',
+  },
 }));
 
 const ActionButtons = styled(Box)(({ theme }) => ({
@@ -352,7 +350,7 @@ const TableList: React.FC = () => {
         {sortedTables.map((table) => (
           <Grid item xs={12} sm={6} md={2.4} key={table.id}>
             <StyledCard
-              isactive={table.isActive}
+              isActive={table.isActive}
               onClick={() => navigate(`/table/${table.id}`)}
               sx={{ cursor: 'pointer', '&:hover': { boxShadow: '0 0 24px 4px rgba(33,150,243,0.2), 0 12px 32px rgba(0,0,0,0.5)' } }}
             >
