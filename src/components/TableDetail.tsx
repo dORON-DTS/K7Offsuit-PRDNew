@@ -42,6 +42,7 @@ interface EditForm {
   location: string;
   date: Date;
 }
+
 interface EditFormErrors {
   [key: string]: string | undefined;
   name?: string;
@@ -49,6 +50,33 @@ interface EditFormErrors {
   bigBlind?: string;
   location?: string;
   date?: string;
+}
+
+interface Player {
+  id: string;
+  name: string;
+  nickname?: string;
+  chips: number;
+  totalBuyIn: number;
+  active: boolean;
+  showMe: boolean;
+  buyIns: BuyIn[];
+  cashOuts: CashOut[];
+  tableId: string;
+}
+
+interface BuyIn {
+  id: string;
+  playerId: string;
+  amount: number;
+  timestamp: Date;
+}
+
+interface CashOut {
+  id: string;
+  playerId: string;
+  amount: number;
+  timestamp: Date;
 }
 
 const TableDetail: React.FC = () => {
@@ -350,7 +378,7 @@ const TableDetail: React.FC = () => {
 
   // Calculate statistics
   const totalBuyInAmount = table.players.reduce((sum, player) => sum + (player.totalBuyIn || 0), 0);
-  const playersWithBuyIns = table.players.filter((player) => (player.totalBuyIn || 0) > 0).length;
+  const playersWithBuyIns = table.players.filter((player: Player) => (player.totalBuyIn || 0) > 0).length;
   const avgBuyInPerPlayer = playersWithBuyIns > 0 ? totalBuyInAmount / playersWithBuyIns : 0;
 
   // עדכון ערכים בטופס

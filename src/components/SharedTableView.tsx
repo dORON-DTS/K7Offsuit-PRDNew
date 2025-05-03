@@ -41,6 +41,33 @@ interface FeedbackState {
   severity: 'success' | 'error';
 }
 
+interface Player {
+  id: string;
+  name: string;
+  nickname?: string;
+  chips: number;
+  totalBuyIn: number;
+  active: boolean;
+  showMe: boolean;
+  buyIns: BuyIn[];
+  cashOuts: CashOut[];
+  tableId: string;
+}
+
+interface BuyIn {
+  id: string;
+  playerId: string;
+  amount: number;
+  timestamp: Date;
+}
+
+interface CashOut {
+  id: string;
+  playerId: string;
+  amount: number;
+  timestamp: Date;
+}
+
 const SharedTableView: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   
@@ -145,7 +172,7 @@ const SharedTableView: React.FC = () => {
 
   // Calculate statistics
   const totalBuyInAmount = players.reduce((sum, player) => sum + (player.totalBuyIn || 0), 0);
-  const playersWithBuyIns = players.filter((player) => (player.totalBuyIn || 0) > 0).length;
+  const playersWithBuyIns = players.filter((player: Player) => (player.totalBuyIn || 0) > 0).length;
   const avgBuyInPerPlayer = playersWithBuyIns > 0 ? totalBuyInAmount / playersWithBuyIns : 0;
 
   const calculatePlayerBalance = (player: Player): number => {

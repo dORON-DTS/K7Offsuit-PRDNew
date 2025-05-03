@@ -112,12 +112,12 @@ export const PokerProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       console.log('Received data:', data); // Debug log
       
       // Ensure each table has a players array and parse dates
-      const tablesWithPlayers = data.map((table: any) => ({
+      const tablesWithPlayers = data.map((table: Table) => ({
         ...table,
         createdAt: new Date(table.createdAt),
-        players: (table.players || []).map((player: any) => ({
+        players: (table.players || []).map((player: Player) => ({
           ...player,
-          buyIns: (player.buyIns || []).map((buyIn: any) => ({ ...buyIn, timestamp: new Date(buyIn.timestamp) }))
+          buyIns: (player.buyIns || []).map((buyIn: BuyIn) => ({ ...buyIn, timestamp: new Date(buyIn.timestamp) }))
         }))
       }));
       setTables(tablesWithPlayers);
