@@ -292,7 +292,7 @@ const StatisticsView: React.FC = () => {
         // Calculate stats for THIS TABLE participation
         const tableBuyIn = player.totalBuyIn || 0;
         const tableCashOutTotal = player.cashOuts?.reduce((sum, co) => sum + (Number(co.amount) || 0), 0) || 0;
-        const tableCurrentChips = player.isActive ? (player.chips || 0) : 0;
+        const tableCurrentChips = player.active ? (player.chips || 0) : 0;
         const tableTotalValue = tableCashOutTotal + tableCurrentChips;
         const tableNetResult = tableTotalValue - tableBuyIn;
 
