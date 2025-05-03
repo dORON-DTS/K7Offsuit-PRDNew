@@ -37,6 +37,16 @@ interface CreateTableFormData {
   location: string;
 }
 
+interface Table {
+  id: string;
+  name: string;
+  smallBlind: number;
+  bigBlind: number;
+  location: string;
+  isActive: boolean;
+  createdAt: string;
+}
+
 const StyledCard = styled(Card)<{ isactive: boolean }>(({ theme, isactive }) => ({
   background: '#1e1e1e',
   color: 'white',
