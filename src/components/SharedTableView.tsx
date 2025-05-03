@@ -41,19 +41,6 @@ interface FeedbackState {
   severity: 'success' | 'error';
 }
 
-interface Player {
-  id: string;
-  name: string;
-  nickname?: string;
-  chips: number;
-  totalBuyIn: number;
-  active: boolean;
-  showMe: boolean;
-  buyIns: BuyIn[];
-  cashOuts: CashOut[];
-  tableId: string;
-}
-
 interface BuyIn {
   id: string;
   playerId: string;
