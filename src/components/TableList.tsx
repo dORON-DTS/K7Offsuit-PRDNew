@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { usePoker } from '../context/PokerContext';
 import { Link, useNavigate } from 'react-router-dom';
-import { Table } from '../types';
+import { Table, CreateTableFormData } from '../types';
 import { 
   Box, 
   Typography, 
@@ -30,13 +30,6 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AddIcon from '@mui/icons-material/Add';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { styled } from '@mui/material/styles';
-
-interface CreateTableFormData {
-  name: string;
-  smallBlind: string;
-  bigBlind: string;
-  location: string;
-}
 
 const StyledCard = styled(Card)<{ isActive: boolean }>(({ theme, isActive }) => ({
   position: 'relative',

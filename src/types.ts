@@ -72,4 +72,11 @@ export interface EditFormErrors {
   bigBlind?: string;
   location?: string;
   date?: string;
+}
+
+export interface CreateTableFormData {
+  name: string;
+  smallBlind: string;
+  bigBlind: string;
+  location: string;
 } 
