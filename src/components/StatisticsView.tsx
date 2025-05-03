@@ -46,6 +46,16 @@ interface PlayerStats {
   gamesLost: number;
 }
 
+interface Table {
+  id: string;
+  name: string;
+  smallBlind: number;
+  bigBlind: number;
+  location: string;
+  isActive: boolean;
+  createdAt: string;
+}
+
 // Modify PlayerStats to include latest timestamp (as number) for nickname tracking
 interface AggregatedPlayerStats extends PlayerStats {
   latestTableTimestamp: number | null; // Use number for timestamp comparison
@@ -246,7 +256,7 @@ const StatisticsView: React.FC = () => {
         })
         .then(data => {
           // Filter out active tables
-          const inactiveTables = data.filter(table => !table.isActive);
+          const inactiveTables = data.filter((table: Table) => !table.isActive);
           setStaticTables(inactiveTables);
           setInitialLoadComplete(true);
         })
