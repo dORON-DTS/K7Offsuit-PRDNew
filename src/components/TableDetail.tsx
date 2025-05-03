@@ -35,24 +35,6 @@ import GroupIcon from '@mui/icons-material/Group';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-// טיפוס לעריכת טופס שולחן
-interface EditForm {
-  name: string;
-  smallBlind: string;
-  bigBlind: string;
-  location: string;
-  date: Date;
-}
-
-interface EditFormErrors {
-  [key: string]: string | undefined;
-  name?: string;
-  smallBlind?: string;
-  bigBlind?: string;
-  location?: string;
-  date?: string;
-}
-
 const TableDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
