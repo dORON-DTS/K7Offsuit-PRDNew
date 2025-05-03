@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { usePoker } from '../context/PokerContext';
 import { Link, useNavigate } from 'react-router-dom';
+import { Table } from '../types';
 import { 
   Box, 
   Typography, 
@@ -35,16 +36,6 @@ interface CreateTableFormData {
   smallBlind: string;
   bigBlind: string;
   location: string;
-}
-
-interface Table {
-  id: string;
-  name: string;
-  smallBlind: number;
-  bigBlind: number;
-  location: string;
-  isActive: boolean;
-  createdAt: string;
 }
 
 const StyledCard = styled(Card)<{ isactive: boolean }>(({ theme, isactive }) => ({

@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
-import { usePoker, Table as ContextTable } from '../context/PokerContext';
+import { usePoker } from '../context/PokerContext';
+import { Table } from '../types';
 import { useUser } from '../context/UserContext';
 import {
   Box,
@@ -190,7 +191,7 @@ const StatisticsView: React.FC = () => {
   const { user } = useUser();
   const navigate = useNavigate();
   const [minGamesFilter, setMinGamesFilter] = useState<string>('0');
-  const [staticTables, setStaticTables] = useState<ContextTable[]>([]);
+  const [staticTables, setStaticTables] = useState<Table[]>([]);
   const [initialLoadComplete, setInitialLoadComplete] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
