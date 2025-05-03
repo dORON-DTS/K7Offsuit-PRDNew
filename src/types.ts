@@ -25,7 +25,7 @@ export interface CashOut {
   timestamp: Date;
 }
 
-export interface PokerTable {
+export interface Table {
   id: string;
   name: string;
   players: Player[];
@@ -35,4 +35,41 @@ export interface PokerTable {
   isActive: boolean;
   creatorId: string;
   location?: string;
+}
+
+export interface PlayerStats {
+  id: string;
+  name: string;
+  nickname?: string;
+  totalBuyIn: number;
+  totalCashOut: number;
+  netResult: number;
+  tablesPlayed: number;
+  avgBuyIn: number;
+  avgNetResult: number;
+  largestWin: number;
+  largestLoss: number;
+  gamesWon: number;
+  gamesLost: number;
+}
+
+export interface AggregatedPlayerStats extends PlayerStats {
+  latestTableTimestamp: number | null;
+}
+
+export interface EditForm {
+  name: string;
+  smallBlind: string;
+  bigBlind: string;
+  location: string;
+  date: Date;
+}
+
+export interface EditFormErrors {
+  [key: string]: string | undefined;
+  name?: string;
+  smallBlind?: string;
+  bigBlind?: string;
+  location?: string;
+  date?: string;
 } 

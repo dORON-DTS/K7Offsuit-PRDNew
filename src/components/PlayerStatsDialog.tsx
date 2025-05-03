@@ -10,33 +10,16 @@ import {
   Grid,
   Paper
 } from '@mui/material';
-import { PokerTable as TableType } from '../types'; // Import necessary types
+import { Table, PlayerStats } from '../types';
 // Import Recharts components
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
-// Extend PlayerStats to include detailed fields if needed, or use as is
-interface PlayerStats {
-    id: string;
-    name: string;
-    nickname?: string;
-    totalBuyIn: number;
-    totalCashOut: number; 
-    netResult: number; 
-    tablesPlayed: number;
-    avgBuyIn: number; 
-    avgNetResult: number; 
-    largestWin: number; 
-    largestLoss: number; 
-    gamesWon: number; 
-    gamesLost: number; 
-  }
 
 // Interface for props expected by the dialog
 interface PlayerStatsDialogProps {
   open: boolean;
   onClose: () => void;
-  playerData: PlayerStats | null; // Use the PlayerStats from StatisticsView for basic info
-  allTablesData: TableType[]; // Pass all static tables for calculation
+  playerData: PlayerStats | null;
+  allTablesData: Table[];
 }
 
 const PlayerStatsDialog: React.FC<PlayerStatsDialogProps> = ({ open, onClose, playerData, allTablesData }) => {

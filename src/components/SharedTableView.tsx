@@ -31,7 +31,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import CircularProgress from '@mui/material/CircularProgress';
 import GroupIcon from '@mui/icons-material/Group';
-import { Player, PokerTable as TableType } from '../types';
+import { Player, Table, BuyIn, CashOut } from '../types';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 
@@ -41,25 +41,11 @@ interface FeedbackState {
   severity: 'success' | 'error';
 }
 
-interface BuyIn {
-  id: string;
-  playerId: string;
-  amount: number;
-  timestamp: Date;
-}
-
-interface CashOut {
-  id: string;
-  playerId: string;
-  amount: number;
-  timestamp: Date;
-}
-
 const SharedTableView: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   
   // State to hold the fetched table data directly
-  const [table, setTable] = useState<TableType | null>(null);
+  const [table, setTable] = useState<Table | null>(null);
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
   const [historyDialogOpen, setHistoryDialogOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // Start loading initially
@@ -95,7 +81,7 @@ const SharedTableView: React.FC = () => {
         }
       }
 
-      const data: TableType = await response.json();
+      const data: Table = await response.json();
       console.log('[SharedTableView] Successfully fetched table data:', data);
       setTable(data);
     } catch (fetchError: any) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { usePoker } from '../context/PokerContext';
-import { Player } from '../types';
+import { Player, BuyIn, CashOut, EditForm, EditFormErrors } from '../types';
 import { 
   Box, 
   Typography, 
@@ -51,20 +51,6 @@ interface EditFormErrors {
   bigBlind?: string;
   location?: string;
   date?: string;
-}
-
-interface BuyIn {
-  id: string;
-  playerId: string;
-  amount: number;
-  timestamp: Date;
-}
-
-interface CashOut {
-  id: string;
-  playerId: string;
-  amount: number;
-  timestamp: Date;
 }
 
 const TableDetail: React.FC = () => {

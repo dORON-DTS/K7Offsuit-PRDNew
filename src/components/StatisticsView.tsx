@@ -1,12 +1,12 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { usePoker } from '../context/PokerContext';
-import { Table } from '../types';
+import { Table, PlayerStats, AggregatedPlayerStats } from '../types';
 import { useUser } from '../context/UserContext';
 import {
   Box,
   Typography,
   Paper,
-  Table,
+  Table as MuiTable,
   TableBody,
   TableCell,
   TableContainer,
@@ -30,37 +30,6 @@ import PlayerStatsDialog from './PlayerStatsDialog';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import PetsIcon from '@mui/icons-material/Pets';
 import styles from './StatisticsView.module.css';
-
-interface PlayerStats {
-  id: string;
-  name: string;
-  nickname?: string;
-  totalBuyIn: number;
-  totalCashOut: number; // Will be calculated
-  netResult: number; // Will be calculated
-  tablesPlayed: number;
-  avgBuyIn: number;
-  avgNetResult: number;
-  largestWin: number;
-  largestLoss: number;
-  gamesWon: number;
-  gamesLost: number;
-}
-
-interface Table {
-  id: string;
-  name: string;
-  smallBlind: number;
-  bigBlind: number;
-  location: string;
-  isActive: boolean;
-  createdAt: string;
-}
-
-// Modify PlayerStats to include latest timestamp (as number) for nickname tracking
-interface AggregatedPlayerStats extends PlayerStats {
-  latestTableTimestamp: number | null; // Use number for timestamp comparison
-}
 
 // Helper type for sorting
 type Order = 'asc' | 'desc';
@@ -682,7 +651,7 @@ const StatisticsView: React.FC = () => {
             }
           }}
         >
-          <Table stickyHeader>
+          <MuiTable stickyHeader>
             <TableHead>
               <TableRow>
                 <TableCell
@@ -875,7 +844,7 @@ const StatisticsView: React.FC = () => {
                   })
               )}
             </TableBody>
-          </Table>
+          </MuiTable>
         </TableContainer>
       </Box>
 
