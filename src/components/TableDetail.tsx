@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { usePoker } from '../context/PokerContext';
+import { Player } from '../types';
 import { 
   Box, 
   Typography, 
@@ -50,19 +51,6 @@ interface EditFormErrors {
   bigBlind?: string;
   location?: string;
   date?: string;
-}
-
-interface Player {
-  id: string;
-  name: string;
-  nickname?: string;
-  chips: number;
-  totalBuyIn: number;
-  active: boolean;
-  showMe: boolean;
-  buyIns: BuyIn[];
-  cashOuts: CashOut[];
-  tableId: string;
 }
 
 interface BuyIn {

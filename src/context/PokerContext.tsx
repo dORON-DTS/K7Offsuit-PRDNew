@@ -1,46 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useUser } from './UserContext';
-
-// Export Table, Player, BuyIn interfaces
-export interface Table {
-  id: string;
-  name: string;
-  smallBlind: number;
-  bigBlind: number;
-  location?: string;
-  isActive: boolean;
-  createdAt: Date;
-  creatorId: string;
-  players: Player[];
-}
-
-export interface BuyIn {
-  id: string;
-  playerId: string;
-  amount: number;
-  timestamp: Date;
-}
-
-export interface Player {
-  id: string;
-  name: string;
-  nickname?: string;
-  chips: number;
-  totalBuyIn: number;
-  active: boolean;
-  showMe: boolean;
-  buyIns: BuyIn[];
-  cashOuts: CashOut[];
-  tableId: string;
-}
-
-export interface CashOut {
-  id: string;
-  playerId: string;
-  amount: number;
-  timestamp: Date;
-}
+import { Table, Player, BuyIn, CashOut } from '../types';
 
 interface PokerContextType {
   tables: Table[];
