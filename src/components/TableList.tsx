@@ -34,18 +34,15 @@ import { styled } from '@mui/material/styles';
 const StyledCard = styled(Card)<{ isActive: boolean }>(({ theme, isActive }) => ({
   position: 'relative',
   transition: 'all 0.3s ease',
-  '&:hover': {
-    transform: 'translateY(-5px)',
-  },
   border: isActive ? '2px solid #4caf50' : '2px solid #f44336',
   boxShadow: isActive
     ? '0 4px 20px 0 rgba(0,0,0,0.14), 0 7px 10px -5px rgba(76,175,80,0.4)'
     : '0 4px 20px 0 rgba(0,0,0,0.14), 0 7px 10px -5px rgba(244,67,54,0.4)',
   '&:hover': {
+    transform: 'translateY(-8px)',
     boxShadow: isActive
       ? '0 8px 30px 0 rgba(0,0,0,0.2), 0 10px 15px -5px rgba(76,175,80,0.5)'
-      : '0 8px 30px 0 rgba(0,0,0,0.2), 0 10px 15px -5px rgba(244,67,54,0.5)',
-    transform: 'translateY(-8px)',
+      : '0 8px 30px 0 rgba(0,0,0,0.2), 0 10px 15px -5px rgba(244,67,54,0.5)'
   },
   '&::after': {
     content: '""',
