@@ -4,7 +4,7 @@ import {
   Box,
   Typography,
   Paper,
-  Table,
+  Table as MuiTable,
   TableBody,
   TableCell,
   TableContainer,
@@ -299,7 +299,7 @@ const SharedTableView: React.FC = () => {
           },
         }}
       >
-        <Table sx={{ minWidth: 650, '& .MuiTableCell-root': {
+        <MuiTable sx={{ minWidth: 650, '& .MuiTableCell-root': {
           fontSize: { xs: '0.85rem', sm: '1rem' },
           px: { xs: 0.5, sm: 2 },
           py: { xs: 0.5, sm: 1.5 },
@@ -422,7 +422,7 @@ const SharedTableView: React.FC = () => {
               );
             })}
           </TableBody>
-        </Table>
+        </MuiTable>
       </TableContainer>
 
       {/* Player History Dialog */}
