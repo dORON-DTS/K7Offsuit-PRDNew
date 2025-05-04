@@ -61,9 +61,7 @@ const StyledCard = styled(Card)<{ isActive: boolean }>(({ theme, isActive }) => 
     opacity: 1,
   },
   '& .MuiCardContent-root': {
-    background: isActive
-      ? 'linear-gradient(45deg, #1a237e 30%, #0d47a1 90%)'
-      : 'linear-gradient(45deg, #b71c1c 30%, #c62828 90%)',
+    background: '#181818',
     color: 'white',
   },
 }));
@@ -394,7 +392,7 @@ const TableList: React.FC = () => {
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <CalendarTodayIcon sx={{ color: '#2196f3' }} />
                     <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem' }}>
-                      Created: {formatDate(table.createdAt)}
+                      {formatDate(table.createdAt)}
                     </Typography>
                   </Box>
                 </Box>
