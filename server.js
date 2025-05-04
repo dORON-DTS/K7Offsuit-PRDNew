@@ -28,16 +28,6 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan('combined'));
 
-// Serve static files from the React build directory in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'build')));
-  
-  // Handle any requests that don't match the ones above
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
-}
-
 // Database setup
 const DATA_DIR = process.env.RENDER ? '/opt/render/project/src/data' : path.join(__dirname, 'data');
 const dbPath = path.join(DATA_DIR, 'poker.db');
@@ -1355,6 +1345,14 @@ app.get('/api/statistics/players', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+// Serve static files from the React build directory in production (MUST be after all API routes)
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'build')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+}
 
 // Handle cleanup on shutdown
 process.on('SIGINT', () => {
