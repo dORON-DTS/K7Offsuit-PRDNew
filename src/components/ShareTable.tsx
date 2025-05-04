@@ -1,12 +1,12 @@
 import { Player } from '../types';
 
 const sortPlayers = (a: Player, b: Player) => {
-  // First sort by balance (high to low)
-  if (b.balance !== a.balance) {
-    return b.balance - a.balance;
+  // First sort by chips (high to low)
+  if (b.chips !== a.chips) {
+    return b.chips - a.chips;
   }
   
-  // If balance is equal, sort by total buy-in (high to low)
+  // If chips is equal, sort by total buy-in (high to low)
   const aTotalBuyIn = a.buyIns.reduce((sum, buyIn) => sum + buyIn.amount, 0);
   const bTotalBuyIn = b.buyIns.reduce((sum, buyIn) => sum + buyIn.amount, 0);
   if (bTotalBuyIn !== aTotalBuyIn) {
