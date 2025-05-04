@@ -1,26 +1,29 @@
 import { Player } from '../types';
 
 const sortPlayers = (a: Player, b: Player) => {
-  // First sort by chips (high to low)
-  if (b.chips !== a.chips) {
-    return b.chips - a.chips;
-  }
-  
-  // If chips is equal, sort by total buy-in (high to low)
+  // Calculate totals
   const aTotalBuyIn = a.buyIns.reduce((sum, buyIn) => sum + buyIn.amount, 0);
   const bTotalBuyIn = b.buyIns.reduce((sum, buyIn) => sum + buyIn.amount, 0);
+
+  const aTotalCashOut = a.cashOuts.reduce((sum, cashOut) => sum + cashOut.amount, 0);
+  const bTotalCashOut = b.cashOuts.reduce((sum, cashOut) => sum + cashOut.amount, 0);
+
+  const aBalance = aTotalCashOut - aTotalBuyIn;
+  const bBalance = bTotalCashOut - bTotalBuyIn;
+
+  // 1. Balance (high to low)
+  if (bBalance !== aBalance) {
+    return bBalance - aBalance;
+  }
+  // 2. Total Buy-in (high to low)
   if (bTotalBuyIn !== aTotalBuyIn) {
     return bTotalBuyIn - aTotalBuyIn;
   }
-  
-  // If total buy-in is equal, sort by total cash-out (high to low)
-  const aTotalCashOut = a.cashOuts.reduce((sum, cashOut) => sum + cashOut.amount, 0);
-  const bTotalCashOut = b.cashOuts.reduce((sum, cashOut) => sum + cashOut.amount, 0);
+  // 3. Total Cash-out (high to low)
   if (bTotalCashOut !== aTotalCashOut) {
     return bTotalCashOut - aTotalCashOut;
   }
-  
-  // If all else is equal, sort by player name (A-Z)
+  // 4. Name (A-Z)
   return a.name.localeCompare(b.name);
 };
 
