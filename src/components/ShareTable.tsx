@@ -1,3 +1,5 @@
+import { Player } from '../types';
+
 const sortPlayers = (a: Player, b: Player) => {
   // First sort by balance (high to low)
   if (b.balance !== a.balance) {
