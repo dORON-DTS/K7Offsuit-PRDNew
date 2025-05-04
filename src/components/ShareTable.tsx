@@ -1,6 +1,6 @@
 import { Player } from '../types';
 
-const sortPlayers = (a: Player, b: Player) => {
+export const sortPlayers = (a: Player, b: Player) => {
   // Calculate totals
   const aTotalBuyIn = a.buyIns.reduce((sum, buyIn) => sum + buyIn.amount, 0);
   const bTotalBuyIn = b.buyIns.reduce((sum, buyIn) => sum + buyIn.amount, 0);
