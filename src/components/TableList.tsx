@@ -72,7 +72,7 @@ const ActionButtons = styled(Box)(({ theme }) => ({
   right: theme.spacing(1),
   display: 'flex',
   gap: theme.spacing(1),
-  opacity: 0,
+  opacity: 1,
   transform: 'translateY(-10px)',
   transition: 'all 0.3s ease'
 }));
