@@ -38,6 +38,10 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
         },
       });
       console.log("[UserContext] User info response status:", response.status);
+      if (response.status === 304) {
+        console.log("[UserContext] No changes to user info (304 Not Modified)");
+        return; // Don't try to parse JSON
+      }
       if (response.ok) {
         const userData = await response.json();
         console.log("[UserContext] User info data:", userData);
