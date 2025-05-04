@@ -20,4 +20,6 @@ const sortPlayers = (a: Player, b: Player) => {
   
   // If all else is equal, sort by player name (A-Z)
   return a.name.localeCompare(b.name);
-}; 
+};
+
+export {}; 
