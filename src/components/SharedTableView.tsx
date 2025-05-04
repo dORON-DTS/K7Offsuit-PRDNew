@@ -34,6 +34,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import { Player, Table, BuyIn, CashOut } from '../types';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import { sortPlayers } from './ShareTable';
 
 // Define Feedback type
 interface FeedbackState {
@@ -339,7 +340,7 @@ const SharedTableView: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {players.map((player) => {
+            {[...players].sort(sortPlayers).map((player) => {
               if (!player || typeof player !== 'object') return null;
               
               const balance = calculatePlayerBalance(player);
