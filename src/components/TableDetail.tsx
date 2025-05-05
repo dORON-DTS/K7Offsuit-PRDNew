@@ -224,7 +224,7 @@ const TableDetail: React.FC = () => {
     setSelectedPlayerId(playerId);
     const player = table.players.find(p => p.id === playerId);
     if (player) {
-      setCashOutAmount(player.chips);
+      setCashOutAmount(player.chips ?? 0);
       setCashOutDialogOpen(true);
     }
   };
@@ -254,23 +254,23 @@ const TableDetail: React.FC = () => {
 
   const calculatePlayerBalance = (player: any): number => {
     if (!player) return 0;
-    const totalBuyIn = player.totalBuyIn || 0;
+    const totalBuyIn = player.totalBuyIn ?? 0;
     const totalCashOut = Array.isArray(player.cashOuts)
       ? player.cashOuts.reduce((sum: number, cashOut: { amount: number }) => sum + cashOut.amount, 0)
       : 0;
-    return (player.chips || 0) + totalCashOut - totalBuyIn;
+    return (player.chips ?? 0) + totalCashOut - totalBuyIn;
   };
 
   // Add validation checks for table deactivation
   const calculateTableBalance = () => {
     // Total buy-ins
-    const totalBuyIns = table.players.reduce((sum, player) => sum + (player.totalBuyIn || 0), 0);
+    const totalBuyIns = table.players.reduce((sum, player) => sum + (player.totalBuyIn ?? 0), 0);
     
     // Total cash-outs for inactive players + current chips for active players
     const totalCashOutsAndChips = table?.players.reduce((sum, player) => {
       if (player.active) {
         // For active players, only count their current chips
-        return sum + (player.chips || 0);
+        return sum + (player.chips ?? 0);
       } else {
         // For inactive players, sum their cashouts
         const cashOutsTotal = Array.isArray(player.cashOuts) 
@@ -278,7 +278,7 @@ const TableDetail: React.FC = () => {
           : 0;
         return sum + cashOutsTotal;
       }
-    }, 0) || 0;
+    }, 0) ?? 0;
 
     // Difference remains the same calculation
     const difference = totalBuyIns - totalCashOutsAndChips;
@@ -333,8 +333,8 @@ const TableDetail: React.FC = () => {
   };
 
   // Calculate statistics
-  const totalBuyInAmount = table.players.reduce((sum, player) => sum + (player.totalBuyIn || 0), 0);
-  const playersWithBuyIns = table.players.filter((player: Player) => (player.totalBuyIn || 0) > 0).length;
+  const totalBuyInAmount = table.players.reduce((sum, player) => sum + (player.totalBuyIn ?? 0), 0);
+  const playersWithBuyIns = table.players.filter((player: Player) => (player.totalBuyIn ?? 0) > 0).length;
   const avgBuyInPerPlayer = playersWithBuyIns > 0 ? totalBuyInAmount / playersWithBuyIns : 0;
 
   // עדכון ערכים בטופס
@@ -535,7 +535,7 @@ const TableDetail: React.FC = () => {
                     </Box>
                   </Box>
 
-                  <Typography variant="body2">Chips: {player.chips}</Typography>
+                  <Typography variant="body2">Chips: {player.chips ?? 0}</Typography>
                   <Typography variant="body2">Total Buy In: {player.totalBuyIn ?? 0}</Typography>
 
                   <Button 
