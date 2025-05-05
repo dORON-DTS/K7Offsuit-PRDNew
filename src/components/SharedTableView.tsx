@@ -342,23 +342,19 @@ const SharedTableView: React.FC = () => {
           <TableBody>
             {[...players].sort(sortPlayers).map((player) => {
               if (!player || typeof player !== 'object') return null;
-              
               const balance = calculatePlayerBalance(player);
               const balanceColor = balance > 0 ? '#4caf50' : balance < 0 ? '#f44336' : 'white';
               const formattedBalance = balance > 0 ? `+${balance}` : `${balance}`;
               const totalCashOutDisplay = Array.isArray(player.cashOuts)
                 ? player.cashOuts.reduce((sum, cashOut) => sum + (Number(cashOut?.amount) || 0), 0)
                 : 0;
-              
               return (
                 <TableRow 
                   key={player.id}
                   onClick={() => handlePlayerClick(player)}
                   sx={{ 
                     cursor: 'pointer',
-                    '&:hover': {
-                      backgroundColor: '#2e2e2e'
-                    }
+                    '&:hover': { backgroundColor: '#2e2e2e' }
                   }}
                 >
                   <TableCell component="th" scope="row" sx={{
@@ -386,13 +382,16 @@ const SharedTableView: React.FC = () => {
                       )}
                     </Box>
                   </TableCell>
-                  <TableCell align="center" sx={{ color: 'white', fontSize: { xs: '0.85rem', sm: '1rem' }, px: { xs: 0.5, sm: 2 }, py: { xs: 0.5, sm: 1.5 } }}>
+                  <TableCell align="center" sx={{ color: 'white' }}>
+                    {player.totalBuyIn ?? 0}
+                  </TableCell>
+                  <TableCell align="center" sx={{ color: 'white' }}>
                     {totalCashOutDisplay}
                   </TableCell>
-                  <TableCell align="center" sx={{ color: 'white', fontSize: { xs: '0.85rem', sm: '1rem' }, px: { xs: 0.5, sm: 2 }, py: { xs: 0.5, sm: 1.5 } }}>
+                  <TableCell align="center" sx={{ color: balanceColor, fontWeight: 'bold', fontSize: { xs: '0.95rem', sm: '1.1rem' } }}>
                     {formattedBalance}
                   </TableCell>
-                  <TableCell align="center" sx={{ fontSize: { xs: '0.85rem', sm: '1rem' }, px: { xs: 0.5, sm: 2 }, py: { xs: 0.5, sm: 1.5 } }}>
+                  <TableCell align="center">
                     <IconButton 
                       sx={{ 
                         color: player.showMe ? '#2196f3' : '#757575',
@@ -400,11 +399,13 @@ const SharedTableView: React.FC = () => {
                         fontSize: { xs: '1.1rem', sm: '1.25rem' },
                         p: { xs: 0.5, sm: 1 }
                       }}
+                      tabIndex={-1}
+                      onClick={e => e.stopPropagation()}
                     >
                       {player.showMe ? <VisibilityIcon fontSize="inherit" /> : <VisibilityOffIcon fontSize="inherit" />}
                     </IconButton>
                   </TableCell>
-                  <TableCell align="center" sx={{ fontSize: { xs: '0.85rem', sm: '1rem' }, px: { xs: 0.5, sm: 2 }, py: { xs: 0.5, sm: 1.5 } }}>
+                  <TableCell align="center">
                     <Chip 
                       label={player.active ? 'Active' : 'Inactive'}
                       color={player.active ? 'success' : 'default'}
