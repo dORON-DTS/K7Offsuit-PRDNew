@@ -35,6 +35,7 @@ import { Player, Table, BuyIn, CashOut } from '../types';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import { sortPlayers } from './ShareTable';
+import EventIcon from '@mui/icons-material/Event';
 
 // Define Feedback type
 interface FeedbackState {
@@ -257,27 +258,25 @@ const SharedTableView: React.FC = () => {
       </Grid>
 
       {/* Table Info */}
-      <Paper sx={{ 
-        p: 2, 
-        mb: 3, 
-        bgcolor: '#1e1e1e', 
-        color: 'white',
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: 2
-      }}>
-        <Typography variant="body1" component="span">
-          Small Blind: {table.smallBlind || 0}
-        </Typography>
-        <Typography variant="body1" component="span">
-          Big Blind: {table.bigBlind || 0}
-        </Typography>
-        {table.location && (
-          <Typography variant="body1" component="span">
-            Location: {table.location}
+      <Box sx={{ mb: 3 }}>
+        <Paper sx={{ p: 2, mb: 3, bgcolor: '#232323', color: 'white', display: 'flex', alignItems: 'center', gap: 3, flexWrap: 'wrap' }}>
+          <Typography variant="h5" sx={{ fontWeight: 'bold', color: 'primary.main', mr: 2 }}>
+            {table.name}
           </Typography>
-        )}
-      </Paper>
+          <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1, mr: 2 }}>
+            <EventIcon sx={{ fontSize: 20, color: 'grey.400' }} />
+            {new Date(table.createdAt).toLocaleString('he-IL', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false })}
+          </Typography>
+          <Typography variant="body1" sx={{ color: 'grey.400', mr: 2 }}>
+            Small Blind: {table.smallBlind} | Big Blind: {table.bigBlind}
+          </Typography>
+          {table.location && (
+            <Typography variant="body1" sx={{ color: 'grey.400' }}>
+              | Location: {table.location}
+            </Typography>
+          )}
+        </Paper>
+      </Box>
 
       {/* Players Table */}
       <TableContainer 
