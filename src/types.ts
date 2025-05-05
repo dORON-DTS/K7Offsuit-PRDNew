@@ -2,10 +2,17 @@ export interface Player {
   id: string;
   name: string;
   nickname?: string;
+<<<<<<< HEAD
   chips?: number | null;
   active: boolean;
   buyIns: BuyIn[];
   totalBuyIn?: number | null;
+=======
+  chips: number;
+  active: boolean;
+  buyIns: BuyIn[];
+  totalBuyIn: number;
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
   cashOuts: CashOut[];
   showMe: boolean;
   tableId: string;

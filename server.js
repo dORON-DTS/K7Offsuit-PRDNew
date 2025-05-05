@@ -464,7 +464,11 @@ app.post('/api/tables/:tableId/players', authenticate, authorize(['admin', 'edit
   const playerId = uuidv4();
   const initialBuyInId = uuidv4();
   const timestamp = new Date().toISOString();
+<<<<<<< HEAD
   const initialBuyInAmount = (chips === null || chips === undefined || chips === '') ? null : Number(chips);
+=======
+  const initialBuyInAmount = Number(chips) || 0;
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
 
   db.serialize(() => {
     db.run(
@@ -477,6 +481,7 @@ app.post('/api/tables/:tableId/players', authenticate, authorize(['admin', 'edit
         }
         console.log(`ADD PLAYER SUCCESS (INSERT PLAYER): Table ${tableId}, Player ID: ${playerId}, Name: ${name}`);
 
+<<<<<<< HEAD
         if (initialBuyInAmount !== null && initialBuyInAmount !== undefined) {
           db.run(
             'INSERT INTO buyins (id, playerId, amount, timestamp) VALUES (?, ?, ?, ?)',
@@ -524,6 +529,40 @@ app.post('/api/tables/:tableId/players', authenticate, authorize(['admin', 'edit
           };
           res.status(201).json(newPlayerResponse);
         }
+=======
+        db.run(
+          'INSERT INTO buyins (id, playerId, amount, timestamp) VALUES (?, ?, ?, ?)',
+          [initialBuyInId, playerId, initialBuyInAmount, timestamp],
+          function(buyinErr) {
+            if (buyinErr) {
+              console.error(`ADD PLAYER ERROR (INSERT INITIAL BUYIN): Player ${playerId} - ${buyinErr.message}`);
+            } else {
+              console.log(`ADD PLAYER SUCCESS (INSERT INITIAL BUYIN): Player ID: ${playerId}, Buyin ID: ${initialBuyInId}, Amount: ${initialBuyInAmount}`);
+            }
+            
+            const newPlayerResponse = {
+              id: playerId,
+              tableId: tableId,
+              name: name,
+              nickname: nickname,
+              chips: initialBuyInAmount,
+              totalBuyIn: initialBuyInAmount,
+              active: active,
+              showMe: showMe,
+              buyIns: [
+                {
+                  id: initialBuyInId,
+                  playerId: playerId,
+                  amount: initialBuyInAmount,
+                  timestamp: timestamp
+                }
+              ],
+              cashOuts: []
+            };
+            res.status(201).json(newPlayerResponse);
+          }
+        );
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
       }
     );
   });
@@ -583,7 +622,11 @@ app.post('/api/tables/:tableId/players/:playerId/buyins', authenticate, authoriz
         }
 
         db.run(
+<<<<<<< HEAD
           'UPDATE players SET chips = COALESCE(chips, 0) + ?, totalBuyIn = COALESCE(totalBuyIn, 0) + ? WHERE id = ?',
+=======
+          'UPDATE players SET chips = chips + ?, totalBuyIn = totalBuyIn + ? WHERE id = ?',
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
           [numericAmount, numericAmount, playerId],
           function(updateErr) {
             if (updateErr) {

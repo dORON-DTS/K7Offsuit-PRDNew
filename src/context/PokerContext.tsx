@@ -8,7 +8,11 @@ interface PokerContextType {
   getTable: (id: string) => Table | undefined;
   createTable: (name: string, smallBlind: number, bigBlind: number, location?: string) => void;
   deleteTable: (tableId: string) => void;
+<<<<<<< HEAD
   addPlayer: (tableId: string, name: string, chips: number | null, nickname?: string) => void;
+=======
+  addPlayer: (tableId: string, name: string, chips: number, nickname?: string) => void;
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
   removePlayer: (tableId: string, playerId: string) => void;
   updatePlayerChips: (tableId: string, playerId: string, newChips: number) => void;
   addBuyIn: (tableId: string, playerId: string, amount: number) => void;
@@ -184,7 +188,11 @@ export const PokerProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setTimeout(() => setTransientError(null), 2000);
   };
 
+<<<<<<< HEAD
   const addPlayer = async (tableId: string, name: string, chips: number | null, nickname?: string) => {
+=======
+  const addPlayer = async (tableId: string, name: string, chips: number, nickname?: string) => {
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
     const newPlayer = {
       id: uuidv4(),
       name,
@@ -193,12 +201,20 @@ export const PokerProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       totalBuyIn: chips,
       active: true,
       showMe: true,
+<<<<<<< HEAD
       buyIns: chips ? [{
+=======
+      buyIns: [{
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
         id: uuidv4(),
         playerId: uuidv4(), // This will be replaced by the server response
         amount: chips,
         timestamp: new Date().toISOString()
+<<<<<<< HEAD
       }] : [],
+=======
+      }],
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
       cashOuts: []
     };
 

@@ -185,7 +185,11 @@ const TableDetail: React.FC = () => {
   };
 
   const isFormValid = () => {
+<<<<<<< HEAD
     return newPlayerName && newPlayerName.trim() !== '';
+=======
+    return newPlayerName && newPlayerName.trim() !== '' && newPlayerChips > 0;
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
   };
 
   const handleAddPlayer = () => {
@@ -202,8 +206,12 @@ const TableDetail: React.FC = () => {
         return;
       }
 
+<<<<<<< HEAD
       const chipsToSend = (!newPlayerChips || newPlayerChips === '' || newPlayerChips === 0) ? null : newPlayerChips;
       addPlayer(id, newPlayerName.trim(), chipsToSend, newPlayerNickname.trim());
+=======
+      addPlayer(id, newPlayerName.trim(), newPlayerChips, newPlayerNickname.trim());
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
       setOpenDialog(false);
       setNewPlayerName(null);
       setNewPlayerNickname('');
@@ -566,7 +574,11 @@ const TableDetail: React.FC = () => {
                         fullWidth
                         startIcon={<AccountBalanceIcon />}
                         onClick={() => handleCashOut(player.id)}
+<<<<<<< HEAD
                         disabled={!player.active || !player.totalBuyIn || player.totalBuyIn <= 0}
+=======
+                        disabled={!player.active}
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
                       >
                         Cash Out
                       </Button>
@@ -638,6 +650,7 @@ const TableDetail: React.FC = () => {
             type="number"
             fullWidth
             variant="outlined"
+<<<<<<< HEAD
             value={newPlayerChips === null ? '' : newPlayerChips}
             onChange={(e) => {
               const val = e.target.value;
@@ -647,6 +660,10 @@ const TableDetail: React.FC = () => {
                 setNewPlayerChips(Number(val));
               }
             }}
+=======
+            value={newPlayerChips}
+            onChange={(e) => setNewPlayerChips(Number(e.target.value) || 0)}
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
             required
             InputLabelProps={{ sx: { color: 'grey.400' } }}
             InputProps={{

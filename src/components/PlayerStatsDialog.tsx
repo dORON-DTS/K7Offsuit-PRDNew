@@ -39,7 +39,14 @@ const PlayerStatsDialog: React.FC<PlayerStatsDialogProps> = ({ open, onClose, pl
 
     sortedTables.forEach(table => {
         const playerInstance = table.players.find(p => 
+<<<<<<< HEAD
             p.name.toLowerCase() === playerData.name.toLowerCase()
+=======
+            p.name.toLowerCase() === playerData.name.toLowerCase() &&
+            (
+              !playerData.nickname || (p.nickname || '').toLowerCase() === playerData.nickname.toLowerCase()
+            )
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
         );
 
         if (playerInstance) {
@@ -88,7 +95,11 @@ const PlayerStatsDialog: React.FC<PlayerStatsDialogProps> = ({ open, onClose, pl
   return (
     <Dialog open={open} onClose={onClose} maxWidth="lg" fullWidth PaperProps={{ sx: { bgcolor: '#1e1e1e', color: 'white' } }}>
       <DialogTitle sx={{ borderBottom: '1px solid rgba(255, 255, 255, 0.12)' }}>
+<<<<<<< HEAD
           Stats for {playerData.name}
+=======
+          Stats for {playerData.name} {playerData.nickname ? `(${playerData.nickname})` : ''}
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
       </DialogTitle>
       <DialogContent dividers sx={{ bgcolor: '#121212' }}> {/* Slightly different background for content */}
         <Grid container spacing={3}>

@@ -145,17 +145,30 @@ const SharedTableView: React.FC = () => {
   const players = table.players || [];
 
   // Calculate statistics
+<<<<<<< HEAD
   const totalBuyInAmount = players.reduce((sum, player) => sum + (player.totalBuyIn ?? 0), 0);
   const playersWithBuyIns = players.filter((player: Player) => (player.totalBuyIn ?? 0) > 0).length;
+=======
+  const totalBuyInAmount = players.reduce((sum, player) => sum + (player.totalBuyIn || 0), 0);
+  const playersWithBuyIns = players.filter((player: Player) => (player.totalBuyIn || 0) > 0).length;
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
   const avgBuyInPerPlayer = playersWithBuyIns > 0 ? totalBuyInAmount / playersWithBuyIns : 0;
 
   const calculatePlayerBalance = (player: Player): number => {
     if (!player) return 0;
+<<<<<<< HEAD
     const totalBuyIn = player.totalBuyIn ?? 0;
     const totalCashOut = Array.isArray(player.cashOuts)
       ? player.cashOuts.reduce((sum, cashOut) => sum + (Number(cashOut?.amount) || 0), 0)
       : 0;
     return (player.chips ?? 0) + totalCashOut - totalBuyIn;
+=======
+    const totalBuyIn = player.totalBuyIn || 0;
+    const totalCashOut = Array.isArray(player.cashOuts)
+      ? player.cashOuts.reduce((sum, cashOut) => sum + (Number(cashOut?.amount) || 0), 0)
+      : 0;
+    return (player.chips || 0) + totalCashOut - totalBuyIn;
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
   };
 
   const handlePlayerClick = (player: Player) => {
@@ -387,7 +400,11 @@ const SharedTableView: React.FC = () => {
                     </Box>
                   </TableCell>
                   <TableCell align="center" sx={{ color: 'white', fontSize: { xs: '0.85rem', sm: '1rem' }, px: { xs: 0.5, sm: 2 }, py: { xs: 0.5, sm: 1.5 } }}>
+<<<<<<< HEAD
                     {player.totalBuyIn ?? '-'}
+=======
+                    {player.totalBuyIn || 0}
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
                   </TableCell>
                   <TableCell align="center" sx={{ color: 'white', fontSize: { xs: '0.85rem', sm: '1rem' }, px: { xs: 0.5, sm: 2 }, py: { xs: 0.5, sm: 1.5 } }}>
                     {totalCashOutDisplay}
@@ -473,7 +490,11 @@ const SharedTableView: React.FC = () => {
                       <ListItemText
                         primary={
                           <Typography sx={{ color: 'white' }}>
+<<<<<<< HEAD
                             Buy In #{index + 1}: ${buyIn.amount ?? '-'}
+=======
+                            Buy In #{index + 1}: ${buyIn.amount || 0}
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
                           </Typography>
                         }
                         secondary={
@@ -515,7 +536,11 @@ const SharedTableView: React.FC = () => {
                 selectedPlayer.cashOuts.map((cashOut, index) => (
                   <ListItem key={index}>
                     <ListItemText
+<<<<<<< HEAD
                       primary={`Cash Out #${index + 1}: $${cashOut.amount ?? '-'}`}
+=======
+                      primary={`Cash Out #${index + 1}: $${cashOut.amount || 0}`}
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
                       secondary={new Date(cashOut.timestamp).toLocaleString()}
                       sx={{ color: 'white' }}
                     />
@@ -545,10 +570,17 @@ const SharedTableView: React.FC = () => {
               Summary
             </Typography>
             <Typography sx={{ color: 'white' }}>
+<<<<<<< HEAD
               Total Buy In: ${selectedPlayer?.totalBuyIn ?? '-'}
             </Typography>
             <Typography sx={{ color: 'white' }}>
               Total Cash Out: ${selectedPlayer?.cashOuts?.reduce((sum, cashOut) => sum + cashOut.amount, 0) ?? '-'}
+=======
+              Total Buy In: ${selectedPlayer?.totalBuyIn || 0}
+            </Typography>
+            <Typography sx={{ color: 'white' }}>
+              Total Cash Out: ${selectedPlayer?.cashOuts?.reduce((sum, cashOut) => sum + cashOut.amount, 0) || 0}
+>>>>>>> 05f11201b6d6ed8c427100210364ee2d23ba02c4
             </Typography>
             <Typography sx={{ 
               color: 'white', 
