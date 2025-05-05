@@ -36,6 +36,9 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import { sortPlayers } from './ShareTable';
 import EventIcon from '@mui/icons-material/Event';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 // Define Feedback type
 interface FeedbackState {
@@ -267,14 +270,20 @@ const SharedTableView: React.FC = () => {
             <EventIcon sx={{ fontSize: 20, color: 'grey.400' }} />
             {new Date(table.createdAt).toLocaleString('he-IL', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false })}
           </Typography>
-          <Typography variant="body1" sx={{ color: 'grey.400', mr: 2 }}>
+          <Typography variant="body1" sx={{ color: 'grey.400', mr: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
+            <MonetizationOnIcon sx={{ fontSize: 18, color: 'gold' }} />
             Small Blind: {table.smallBlind} | Big Blind: {table.bigBlind}
           </Typography>
           {table.location && (
-            <Typography variant="body1" sx={{ color: 'grey.400' }}>
-              | Location: {table.location}
+            <Typography variant="body1" sx={{ color: 'grey.400', display: 'flex', alignItems: 'center', gap: 1 }}>
+              <LocationOnIcon sx={{ fontSize: 18, color: 'red' }} />
+              {table.location}
             </Typography>
           )}
+          <Typography variant="body1" sx={{ color: table.isActive ? '#4caf50' : '#f44336', display: 'flex', alignItems: 'center', gap: 1 }}>
+            <FiberManualRecordIcon sx={{ fontSize: 14, color: table.isActive ? '#4caf50' : '#f44336' }} />
+            {table.isActive ? 'Active' : 'Inactive'}
+          </Typography>
         </Paper>
       </Box>
 

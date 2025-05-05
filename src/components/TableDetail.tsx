@@ -185,7 +185,7 @@ const TableDetail: React.FC = () => {
   };
 
   const isFormValid = () => {
-    return newPlayerName && newPlayerName.trim() !== '' && newPlayerChips > 0;
+    return newPlayerName && newPlayerName.trim() !== '';
   };
 
   const handleAddPlayer = () => {
@@ -202,7 +202,12 @@ const TableDetail: React.FC = () => {
         return;
       }
 
-      addPlayer(id, newPlayerName.trim(), newPlayerChips, newPlayerNickname.trim());
+      addPlayer(
+        id,
+        newPlayerName.trim(),
+        newPlayerChips === 0 ? undefined : newPlayerChips,
+        newPlayerNickname.trim()
+      );
       setOpenDialog(false);
       setNewPlayerName(null);
       setNewPlayerNickname('');
@@ -642,7 +647,7 @@ const TableDetail: React.FC = () => {
             InputLabelProps={{ sx: { color: 'grey.400' } }}
             InputProps={{
               sx: { color: 'white', '& .MuiOutlinedInput-notchedOutline': { borderColor: 'grey.700' } },
-              inputProps: { min: 1 }
+              inputProps: { min: 0 }
             }}
           />
         </DialogContent>
