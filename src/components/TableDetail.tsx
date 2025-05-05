@@ -570,7 +570,7 @@ const TableDetail: React.FC = () => {
                         fullWidth
                         startIcon={<AccountBalanceIcon />}
                         onClick={() => handleCashOut(player.id)}
-                        disabled={!player.active}
+                        disabled={!player.active || (player.totalBuyIn ?? 0) === 0}
                       >
                         Cash Out
                       </Button>

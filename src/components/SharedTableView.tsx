@@ -263,9 +263,6 @@ const SharedTableView: React.FC = () => {
       {/* Table Info */}
       <Box sx={{ mb: 3 }}>
         <Paper sx={{ p: 2, mb: 3, bgcolor: '#232323', color: 'white', display: 'flex', alignItems: 'center', gap: 3, flexWrap: 'wrap' }}>
-          <Typography variant="h5" sx={{ fontWeight: 'bold', color: 'primary.main', mr: 2 }}>
-            {table.name}
-          </Typography>
           <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', gap: 1, mr: 2 }}>
             <EventIcon sx={{ fontSize: 20, color: 'grey.400' }} />
             {new Date(table.createdAt).toLocaleString('he-IL', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false })}
@@ -280,10 +277,6 @@ const SharedTableView: React.FC = () => {
               {table.location}
             </Typography>
           )}
-          <Typography variant="body1" sx={{ color: table.isActive ? '#4caf50' : '#f44336', display: 'flex', alignItems: 'center', gap: 1 }}>
-            <FiberManualRecordIcon sx={{ fontSize: 14, color: table.isActive ? '#4caf50' : '#f44336' }} />
-            {table.isActive ? 'Active' : 'Inactive'}
-          </Typography>
         </Paper>
       </Box>
 
