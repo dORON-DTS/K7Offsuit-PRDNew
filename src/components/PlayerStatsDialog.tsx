@@ -39,10 +39,7 @@ const PlayerStatsDialog: React.FC<PlayerStatsDialogProps> = ({ open, onClose, pl
 
     sortedTables.forEach(table => {
         const playerInstance = table.players.find(p => 
-            p.name.toLowerCase() === playerData.name.toLowerCase() &&
-            (
-              !playerData.nickname || (p.nickname || '').toLowerCase() === playerData.nickname.toLowerCase()
-            )
+            p.name.toLowerCase() === playerData.name.toLowerCase()
         );
 
         if (playerInstance) {

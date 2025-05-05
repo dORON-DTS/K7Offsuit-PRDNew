@@ -282,7 +282,7 @@ const StatisticsView: React.FC = () => {
           };
         } else {
           const currentStats = statsMap[playerIdentifier];
-          // Compare timestamps as numbers
+          // לא לעדכן nickname אם כבר קיים, רק להצגה מהטבלה האחרונה
           if (tableTimestampMs >= (currentStats.latestTableTimestamp || 0)) { 
             currentStats.nickname = player.nickname; 
             currentStats.latestTableTimestamp = tableTimestampMs; // Update latest timestamp (number)
