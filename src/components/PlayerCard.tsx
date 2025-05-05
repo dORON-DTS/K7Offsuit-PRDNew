@@ -18,7 +18,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, tableId, onAddBuyIn, on
   // Calculate total cashout
   const totalCashout = player.cashOuts.reduce((sum, cashout) => sum + cashout.amount, 0);
   // Calculate balance (totalCashout - totalBuyIn)
-  const balance = totalCashout - player.totalBuyIn;
+  const balance = totalCashout - (player.totalBuyIn ?? 0);
 
   return (
     <Card 
@@ -65,7 +65,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, tableId, onAddBuyIn, on
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px' }}>
-          <Typography color="textSecondary">Total Buy In: ${player.totalBuyIn}</Typography>
+          <Typography color="textSecondary">Total Buy In: ${player.totalBuyIn ?? 0}</Typography>
           {!player.active && (
             <>
               <Typography color="textSecondary">Cashout: ${totalCashout}</Typography>
