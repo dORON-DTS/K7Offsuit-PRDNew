@@ -205,7 +205,7 @@ const TableDetail: React.FC = () => {
       addPlayer(
         id,
         newPlayerName.trim(),
-        newPlayerChips === 0 ? undefined : newPlayerChips,
+        newPlayerChips,
         newPlayerNickname.trim()
       );
       setOpenDialog(false);
